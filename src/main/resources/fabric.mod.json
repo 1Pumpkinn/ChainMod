@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "chainmod",
+  "version": "${version}",
+  "name": "ChainMod",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/chainmod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.saturn.chainmod.client.ChainmodClient"
+    ],
+    "main": [
+      "net.saturn.chainmod.Chainmod"
+    ]
+  },
+  "mixins": [
+    "chainmod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
