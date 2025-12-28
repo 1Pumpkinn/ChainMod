@@ -11,10 +11,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "net.saturn.chainmod.client.ChainmodClient"
+      "net.saturn.chainmod.client.ChainModClient"
     ],
     "main": [
-      "net.saturn.chainmod.Chainmod"
+      "net.saturn.chainmod.ChainMod"
     ]
   },
   "mixins": [

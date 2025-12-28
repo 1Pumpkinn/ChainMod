@@ -1,4 +1,4 @@
-package com.example.chainmod;
+package net.saturn.chainmod;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -24,6 +24,9 @@ public class ChainMod implements ModInitializer {
 
         // Register tick event to update chains
         ServerTickEvents.END_WORLD_TICK.register(this::onWorldTick);
+
+        // Register commands
+        ChainCommand.register();
     }
 
     private void onWorldTick(ServerWorld world) {
@@ -46,7 +49,7 @@ public class ChainMod implements ModInitializer {
 
     // Method to create a chain attached to player
     public static void createChainToPlayer(PlayerEntity player, Vec3d anchorPos) {
-        ChainData chain = new ChainData(anchorPos, player.getPos(), 16);
+        ChainData chain = new ChainData(anchorPos, player.getEntityPos(), 16);
         chain.setFollowPlayer(true);
         activeChains.computeIfAbsent(player.getUuid(), k -> new ArrayList<>()).add(chain);
     }

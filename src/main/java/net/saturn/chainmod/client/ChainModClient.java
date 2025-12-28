@@ -30,14 +30,20 @@ public class ChainModClient implements ClientModInitializer {
         Camera camera = context.gameRenderer().getCamera();
         Vec3d cameraPos = camera.getPos();
 
+        // Get immediate vertex consumer provider
+        VertexConsumerProvider.Immediate immediate = client.getBufferBuilders().getEntityVertexConsumers();
+
         // Get chains for all nearby players
         for (PlayerEntity player : client.world.getPlayers()) {
             List<ChainData> chains = ChainMod.getChains(player);
 
             for (ChainData chain : chains) {
-                renderChain(matrices, cameraPos, chain, context.worldRenderer().getBufferBuilders().getEntityVertexConsumers());
+                renderChain(matrices, cameraPos, chain, immediate);
             }
         }
+
+        // Draw the buffered vertices
+        immediate.draw();
     }
 
     private void renderChain(MatrixStack matrices, Vec3d cameraPos,
